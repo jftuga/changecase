@@ -1,4 +1,4 @@
-project_name: case
+project_name: changecase
 builds:
   - main: .
     id: "lower"
