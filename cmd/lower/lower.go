@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/jftuga/changecase"
 	"os"
+
+	"github.com/jftuga/changecase"
 )
 
 const pgmName string = "lower"
@@ -14,5 +15,5 @@ func main() {
 		return
 	}
 
-	fmt.Println(changecase.Lower(os.Args[1:]))
+	fmt.Printf("%v", changecase.Lower(os.Args[1:]))
 }

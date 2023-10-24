@@ -5,8 +5,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/jftuga/changecase"
 	"os"
+
+	"github.com/jftuga/changecase"
 )
 
 const pgmName string = "titlecase"
@@ -16,5 +17,5 @@ func main() {
 		changecase.Usage(pgmName)
 		return
 	}
-	fmt.Println(changecase.TitleCase(os.Args[1:]))
+	fmt.Printf("%v", changecase.TitleCase(os.Args[1:]))
 }
