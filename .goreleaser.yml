@@ -216,4 +216,8 @@ brews:
     homepage: https://github.com/jftuga/changecase
     description: "convert command line arguments to upper, lower or title case"
     test: system "#{bin}/lower TEST"
-    install: bin.install "lower" "upper" "titlecase" "len"
+    install: |
+      bin.install "lower" 
+      bin.install "upper"
+      bin.install "titlecase"
+      bin.install "len"
