@@ -1,118 +1,219 @@
-project_name: changecase
+before:
+  hooks:
+    - go mod tidy
+
 builds:
-  - main: .
-    id: "lower"
-    dir: "./cmd/lower"
+  - id: lower-id1
     binary: lower
+    dir: ./cmd/lower
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
     env:
       - CGO_ENABLED=0
     goos:
-      - darwin
       - linux
-      - windows
       - freebsd
+      - darwin
     goarch:
       - amd64
-      - arm
       - arm64
-      - mips
+      - arm
+      - ppc64le
     goarm:
-      - 7
+      - "7"
     ignore:
       - goos: freebsd
-        goarch: arm
-      - goos: freebsd
         goarch: arm64
       - goos: freebsd
-        goarch: mips
-      - goos: windows
         goarch: arm
-        goarm: 7
-      - goos: windows
-        goarch: arm64
-      - goos: linux
-        goarch: arm64
+      - goos: freebsd
+        goarch: ppc64le
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: ppc64le
 
-  - main: .
-    id: "upper"
-    dir: "./cmd/upper"
+  - id: lower-id2
+    binary: lower
+    dir: ./cmd/lower
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+    goarch:
+      - amd64
+    hooks:
+      post:
+        - upx -9 "{{ .Path }}"
+
+  - id: upper-id1
     binary: upper
+    dir: ./cmd/upper
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
     env:
       - CGO_ENABLED=0
     goos:
-      - darwin
       - linux
-      - windows
       - freebsd
+      - darwin
     goarch:
       - amd64
-      - arm
       - arm64
-      - mips
+      - arm
+      - ppc64le
     goarm:
-      - 7
+      - "7"
     ignore:
       - goos: freebsd
-        goarch: arm
-      - goos: freebsd
         goarch: arm64
       - goos: freebsd
-        goarch: mips
-      - goos: windows
         goarch: arm
-        goarm: 7
-      - goos: windows
-        goarch: arm64
-      - goos: linux
-        goarch: arm64
+      - goos: freebsd
+        goarch: ppc64le
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: ppc64le
 
-  - main: .
-    id: "titlecase"
-    dir: "./cmd/titlecase"
-    binary: titlecase
+  - id: upper-id2
+    binary: upper
+    dir: ./cmd/upper
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
     env:
       - CGO_ENABLED=0
     goos:
-      - darwin
-      - linux
       - windows
-      - freebsd
     goarch:
       - amd64
-      - arm
+    hooks:
+      post:
+        - upx -9 "{{ .Path }}"
+
+  - id: titlecase-id1
+    binary: titlecase
+    dir: ./cmd/titlecase
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - freebsd
+      - darwin
+    goarch:
+      - amd64
       - arm64
-      - mips
+      - arm
+      - ppc64le
     goarm:
-      - 7
+      - "7"
     ignore:
       - goos: freebsd
+        goarch: arm64
+      - goos: freebsd
         goarch: arm
+      - goos: freebsd
+        goarch: ppc64le
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: ppc64le
+
+  - id: titlecase-id2
+    binary: titlecase
+    dir: ./cmd/titlecase
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+    goarch:
+      - amd64
+    hooks:
+      post:
+        - upx -9 "{{ .Path }}"
+
+  - id: len-id1
+    binary: len
+    dir: ./cmd/len
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - freebsd
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+      - arm
+      - ppc64le
+    goarm:
+      - "7"
+    ignore:
       - goos: freebsd
         goarch: arm64
       - goos: freebsd
-        goarch: mips
-      - goos: windows
         goarch: arm
-        goarm: 7
-      - goos: windows
-        goarch: arm64
-      - goos: linux
-        goarch: arm64
+      - goos: freebsd
+        goarch: ppc64le
+      - goos: darwin
+        goarch: arm
+      - goos: darwin
+        goarch: ppc64le
+
+  - id: len-id2
+    binary: len
+    dir: ./cmd/len
+    ldflags:
+      - -extldflags "-static" -s -w -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser -X main.Version={{.Version}} -X main.Revision={{.ShortCommit}}
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+    goarch:
+      - amd64
+    hooks:
+      post:
+        - upx -9 "{{ .Path }}"
 
 archives:
-  - name_template: >-
-      {{- .ProjectName }}_
-      {{- .Version }}_
-      {{- if eq .Os "darwin" }}macos
-      {{- else }}{{ .Os}}{{ end }}_
-      {{- .Arch }}
-      {{- if .Arm }}v{{ .Arm }}{{ end }}
+  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
     format: tar.xz
     format_overrides:
       - goos: windows
         format: zip
     wrap_in_directory: true
+    files:
+      - LICENSE
+      - README.md
+
 checksum:
-  name_template: "{{ .ProjectName }}_{{ .Version }}--sha256_checksums.txt"
+  name_template: "{{ .ProjectName }}_{{ .Version }}--checksums.txt"
 release:
-  draft: true
+  draft: false
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+brews:
+  - name: changecase
+    repository:
+      owner: jftuga
+      name: homebrew-tap
+    commit_author:
+      name: jftuga
+      email: jftuga@users.noreply.github.com
+    homepage: https://github.com/jftuga/changecase
+    description: "convert command line arguments to upper, lower or title case"
+    test: system "#{bin}/lower TEST"
+    install: bin.install "lower" "upper" "titlecase" "len"
