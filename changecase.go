@@ -7,13 +7,13 @@ import (
 	"unicode"
 )
 
-const pgmVersion string = "1.2.0"
-const pgmUrl string = "https://github.com/jftuga/changecase"
+const PgmVersion string = "1.3.0"
+const PgmUrl string = "https://github.com/jftuga/changecase"
 
 // Usage - output when no cmd-line args are given
 func Usage(pgmName string) {
-	fmt.Printf("%s, v%s\n", pgmName, pgmVersion)
-	fmt.Println(pgmUrl)
+	fmt.Printf("%s, v%s\n", pgmName, PgmVersion)
+	fmt.Println(PgmUrl)
 	fmt.Println()
 	fmt.Printf("usage: %s [arguments]\n", pgmName)
 	fmt.Println("(consider surrounding command-line arguments in double-quotes to preserve spacing)")

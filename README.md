@@ -1,6 +1,7 @@
 # changecase
 * convert command line arguments to upper, lower or title case
 * return the combined length of all command-line arguments
+* check for string equality with optional case-insensitive matching
 
 ## Synopsis
 
@@ -12,6 +13,7 @@ Provided programs:
 * upper
 * titlecase
 * len
+* eq
 
 ## Usage
 
@@ -20,6 +22,7 @@ lower [arguments]
 upper [arguments]
 titlecase [arguments]
 len [arguments]
+eq [arguments]
 (consider surrounding command-line arguments in double-quotes to preserve spacing)
 ```
 
@@ -27,3 +30,4 @@ len [arguments]
 
 * macOS: `brew update; brew install jftuga/tap/changecase`
 * Binaries for Linux, macOS and Windows are provided in the [releases](https://github.com/jftuga/changecase/releases) section.
+
