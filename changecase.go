@@ -7,7 +7,7 @@ import (
 	"unicode"
 )
 
-const PgmVersion string = "1.3.0"
+const PgmVersion string = "1.4.0"
 const PgmUrl string = "https://github.com/jftuga/changecase"
 
 // Usage - output when no cmd-line args are given
