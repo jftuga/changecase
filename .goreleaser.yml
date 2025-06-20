@@ -314,3 +314,4 @@ brews:
       bin.install "titlecase"
       bin.install "len"
       bin.install "eq"
+      bin.install "chomp"
